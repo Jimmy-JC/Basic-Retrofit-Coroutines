@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".PostActivity">
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/post"
         android:gravity="center"
         android:layout_margin="20dp"
         android:layout_width="match_parent"

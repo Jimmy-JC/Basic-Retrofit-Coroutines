@@ -1,31 +1,29 @@
 package com.example.basicretrofitcoroutines
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_post.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModels()
+class PostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        viewModel.post.observe(this, { result.text = it.title })
+        setContentView(R.layout.activity_post)
+        viewModels<PostVM>().value.post.observe(this, { post.text = it.body })
     }
 }
 
-data class Post(val title: String, val body: String)
+data class Post(val id: Int, val title: String, val body: String)
 
 interface ApiService { @GET("posts/1") suspend fun getPost(): Post }
 
-class MainRepository { suspend fun getPost() = ServiceProvider.getAPI().getPost() }
+class PostRepo { suspend fun getPost() = ServiceProvider.getAPI().getPost() }
 
-class MainViewModel: ViewModel() { val post = liveData { emit(MainRepository().getPost()) } }
+class PostVM : ViewModel() { val post = liveData { emit(PostRepo().getPost()) } }
 
 object ServiceProvider {
     fun getAPI(): ApiService = Retrofit.Builder()
