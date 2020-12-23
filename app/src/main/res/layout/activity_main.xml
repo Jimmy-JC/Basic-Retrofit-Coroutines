@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/resultText"
+        android:id="@+id/result"
         android:gravity="center"
         android:layout_margin="20dp"
         android:layout_width="match_parent"

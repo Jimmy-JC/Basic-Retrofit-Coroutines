@@ -13,12 +13,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getPost()
-    }
-
-    private fun getPost() {
-        viewModel.post.observe(this, {
-            resultText.text = it.title
-        })
+        viewModel.post.observe(this, { result.text = it.title })
     }
 }
