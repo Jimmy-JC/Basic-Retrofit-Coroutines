@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         getPost()
     }
 
-    fun getPost() {
+    private fun getPost() {
         viewModel.post.observe(this, {
             resultText.text = it.title
         })
